@@ -62,3 +62,4 @@ INSERT INTO Pembayaran VALUES
 ('2020008', '1008', 'Faisal Rahman', 'Mar 2020', 'IDR', 'Rp293.552', 'Finnet Bank - Bank Rakyat Indonesia', '16-Mar-2020', '14:49:43'),
 ('2020009', '9450', 'Sari Indah', 'Jan 2020', 'IDR', 'Rp350.500', 'BPP BPP PLS Penajam', '1-Feb-2020', '10:30:27'),
 ('2020010', '1130', 'Eka Surya', 'Mar 2020', 'IDR', 'Rp288.000', 'Finnet Bank - Bank Mandiri', '16-Mar-2020', '14:49:43');
+
