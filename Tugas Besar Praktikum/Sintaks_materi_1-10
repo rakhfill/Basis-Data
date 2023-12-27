@@ -1,0 +1,226 @@
+SINTAKS DASAR SQL
+CREATE DATABASE nama_database;
+
+SHOW DATABASES;
+
+USE nama_database;
+
+*create tables
+
+SHOW TABLES;
+
+DESC nama_tabel;
+
+RENAME TABLE nama_tabel to nama_tabel2;
+
+ALTER TABLE nama_tabel2 ADD field_baru tipe_data(100);
+
+ALTER TABLE nama_tabel2 DROP nama_field;
+
+DROP TABLE nama_tabel2;
+
+DROP DATABASE nama_database;
+
+-----------------------------------------------------------
+
+CREATE DATABASE pelanggan_wifi;
+
+SHOW DATABASES;
+
+USE pelanggan_wifi;
+
+*create tables
+
+SHOW TABLES;
+
+DESC tagihan;
+
+RENAME TABLE tagihan to tagihan_pelanggan;
+
+ALTER TABLE tagihan_pelanggan ADD Periode VARCHAR (20);
+
+ALTER TABLE tagihan_pelanggan DROP Belum_bayar;
+
+DROP TABLE tagihan_pelanggan;
+
+DROP DATABASE pelanggan_wifi;
+
+-----------------------------------------------------------
+
+MENGELOLA TABEL
+SELECT * FROM nama_tabel2 WHERE nama_field = kondisi;
+
+SELECT * FROM nama_tabel2 WHERE nama_field = kondisi AND nama_field = kondisi;
+
+ALTER TABLE nama_tabel2 MODIFY nama_field tipe_data(100);
+
+DELETE FROM nama_tabel2 WHERE nama_field = kondisi;
+
+-----------------------------------------------------------
+INSERT INTO tagihan_pelanggan VALUES
+('1001', 'Andi Pratama', 'IDR', 'Rp278.000', '0', 'Lunas', 'Bukan cicilan'),
+('1002', 'Rini Anggraini', 'IDR', 'Rp285.000', '0', 'Lunas', 'Bukan cicilan'),
+('1003', 'Bayu Wijaya', 'IDR', 'Rp243.421', '0', 'Lunas', 'Bukan cicilan'),
+('7221', 'Hadi Santoso', 'IDR', 'Rp261.000', '0', 'Lunas', 'Bukan cicilan'),
+('0497', 'Dina Safitri', 'IDR', 'Rp271.000', '0', 'Lunas', 'Bukan cicilan'),
+('5500', 'Dewi Lestari', 'IDR', 'Rp100.000', '0', 'Lunas', 'Bukan cicilan'),
+('1007', 'Maya Putri', 'IDR', 'Rp236.500', '0', 'Lunas', 'Bukan cicilan'),
+('1008', 'Faisal Rahman', 'IDR', 'Rp293.552', '0', 'Lunas', 'Bukan cicilan'),
+('9450', 'Sari Indah', 'IDR', 'Rp350.500', '0', 'Lunas', 'Bukan cicilan'),
+('8102', 'Agus Setiawan', 'IDR', 'Rp300.552', '0', 'Lunas', 'Bukan cicilan');
+
+
+SELECT * FROM tagihan_pelanggan WHERE ID_tagihan = '7221';
+
+SELECT * FROM tagihan_pelanggan WHERE Jumlah_tagihan = 'Rp100.000' AND ID_tagihan = '0497';
+
+ALTER TABLE tagihan_pelanggan MODIFY Status_pembayaran VARCHAR (15);
+
+DELETE FROM tagihan_pelanggan WHERE Jumlah_tagihan = 'Rp300.552';
+
+
+-----------------------------------------------------------
+
+JOIN
+SELECT * FROM Produk;
+
+SELECT * FROM Tagihan;
+
+SELECT * FROM Pembayaran;
+
+
+INNER JOIN
+SELECT * FROM Tagihan INNER JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan;
+
+
+
+LEFT JOIN
+SELECT * FROM Tagihan LEFT JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan;
+
+SELECT * FROM Pembayaran LEFT JOIN Tagihan ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan;
+
+
+
+LEFT JOIN WITHOUT INTERSECTION
+SELECT * FROM Tagihan LEFT JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan WHERE Pembayaran.ID_tagihan IS NULL;
+
+SELECT * FROM Pembayaran LEFT JOIN Tagihan ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan WHERE Tagihan.ID_tagihan IS NULL;
+
+
+
+RIGHT JOIN
+SELECT * FROM Tagihan RIGHT JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan;
+
+
+
+RIGHT JOIN WITHOUT INTERSECTION
+SELECT * FROM Tagihan RIGHT JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan WHERE Tagihan.ID_tagihan IS NULL;
+
+SELECT * FROM Pembayaran RIGHT JOIN Tagihan ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan WHERE Tagihan.ID_tagihan IS NULL;
+
+
+
+
+FULL JOIN
+SELECT * FROM Tagihan LEFT JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan UNION SELECT * FROM Tagihan RIGHT JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan;
+
+
+
+FULL JOIN WITHOUT INTERSECTION
+SELECT * FROM Tagihan LEFT JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan UNION SELECT * FROM Tagihan RIGHT JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan WHERE Tagihan.ID_tagihan IS NOT NULL AND Pembayaran.ID_tagihan IS NOT NULL;
+
+
+
+-----------------------------------------------------------
+
+
+MATCHING
+Filter MATCHING 1 KONDISI
+SELECT Tagihan.ID_tagihan, Tagihan.Jumlah_tagihan FROM Tagihan INNER JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan WHERE Tagihan.ID_tagihan = '1003';
+
+
+
+Filter MATCHING 2 KONDISI
+SELECT Tagihan.ID_tagihan, Tagihan.Jumlah_tagihan, Pembayaran.Nama_pelanggan, Pembayaran.Periode FROM Tagihan INNER JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan WHERE Tagihan.ID_tagihan = '1001' OR Pembayaran.Nama_pelanggan = 'Bayu Wijaya';
+
+
+
+Filter MATCHING 3 KONDISI
+SELECT Tagihan.ID_tagihan, Tagihan.Nama_pelanggan, Pembayaran.Periode FROM Tagihan INNER JOIN Pembayaran ON Tagihan.ID_tagihan = Pembayaran.ID_tagihan WHERE Tagihan.Jumlah_tagihan > 'Rp250.000' AND Pembayaran.Periode = 'Nov 2020' AND Tagihan.Status_pembayaran = 'Lunas';
+
+
+
+-----------------------------------------------------------
+
+
+
+OPERATOR LIKE
+Mencari inisial huruf depannya S pada tabel Periode
+SELECT * FROM Pembayaran WHERE Periode LIKE 'S%';
+
+
+
+Mencari inisial angka belakangnya 5 pada tabel ID_tagihan
+SELECT * FROM Tagihan WHERE Nama_pelanggan LIKE '%i';
+
+
+
+Mencari inisial angka depan dan belakangnya 3 dan 0
+SELECT * FROM Pembayaran WHERE ID_Pelanggan LIKE '3%0';
+
+
+
+Mencari inisial yang huruf depannya bukan M pada tabel Periode
+SELECT * FROM Pembayaran WHERE Periode NOT LIKE 'M%';
+
+
+
+-----------------------------------------------------------
+
+
+MODUL 6 NOMOR 2
+CREATE DATABASE wifi_Kencang;
+
+ALTER TABLE Pembayaran ADD FOREIGN KEY (ID_tagihan) REFERENCES Tagihan (ID_tagihan);
+
+ALTER TABLE Pembayaran ADD CONSTRAINT FOREIGN KEY (ID_tagihan) REFERENCES Tagihan (ID_tagihan);
+
+ALTER TABLE Tagihan ADD FOREIGN KEY (ID_produk) REFERENCES Produk (ID_produk);
+
+DESC Produk;
+
+DESC Tagihan;
+
+DESC Pembayaran;
+
+ALTER TABLE Pembayaran ADD Jns_kelamin VARCHAR (2);
+
+
+-----------------------------------------------------------
+
+
+MODUL 7 NOMOR 2
+CREATE DATABASE wifi_Kencang;
+
+*insert 10 record
+
+SELECT * FROM Tagihan WHERE Nama_pelanggan = 'Faisal Rahman';
+
+SELECT * FROM Tagihan WHERE Jumlah_tagihan = '100000' OR ID_tagihan = '0497';
+
+ALTER TABLE Tagihan MODIFY Status_pembayaran VARCHAR (15);
+
+INSERT INTO Tagihan VALUES ('9014010140903 (INDIHOME)', '2206', 'Budi Santoso', 'IDR', 'Rp385.500', '0', 'Lunas', 'Bukan cicilan');
+
+DELETE FROM Tagihan WHERE Nama_pelanggan = 'Dina Safitri';
+
+ALTER TABLE Tagihan DROP COLUMN Mata_uang;
+
+DROP TABLE Produk;
+
+DROP TABLE Tagihan;
+
+DROP TABLE Pembayaran;
+
+DROP DATABASE wifi_Kencang;
+

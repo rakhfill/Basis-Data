@@ -1,0 +1,90 @@
+Buat tabel
+CREATE TABLE nama_tabel (nama_atribut1 TIPE DATA (ukuran maksimum karakter) PRIMARY KEY, nama_atribut2 TIPE DATA (ukuran maksimum karakter));
+
+Buat isi record
+INSERT INTO nama_tabel VALUES
+('isi record', 'isi_record'),
+('isi record', 'isi_record');
+
+
+-----------------------------------------------------------
+
+
+MENGELOLA DATABASE
+Buat database
+    CREATE DATABASE nama_database;
+
+Mengakftifkan database yang telah dibuat
+    USE nama_database;
+
+Menampilkan daftar database pada komputer
+    SHOW DATABASES;
+
+
+-----------------------------------------------------------
+
+
+MENGELOLA TABEL
+Menampilkan daftar tabel pada database
+    SHOW TABLES;
+
+Ganti nama tabel
+    RENAME TABLE Nama_tabelLama to nama_tabelBaru;
+
+Ganti tipe data atribut
+    ALTER TABLE nama_tabel MODIFY nama_atribut TIPE_DATA (15);
+
+Ganti nama atribut
+    ALTER TABLE nama_tabel CHANGE Nama_tabelLama Nama_tabelBaru TIPE_DATA(50);
+
+Tambahin atribut
+    ALTER TABLE nama_tabel ADD nama_atribut TIPE_DATA (20);
+
+Menampilkan struktur tabel
+    DESCRIBE nama_tabel; / DESC nama_tabel;
+
+Menampilkan 1 tabel
+    SELECT * FROM nama_tabel;
+
+
+-----------------------------------------------------------
+
+
+MENGELOLA ISI RECORD
+Menambahkan isi record
+    INSERT INTO nama_tabel (nama_atribut1, nama_atribut2) VALUES ('isi record', 'isi_record');
+
+Menampilkan atribut beserta isi recordnya
+    SELECT nama_atribut1, nama_atribut2, nama_atribut3 FROM nama_tabel;
+
+Menampilkan record 1 kondisi
+    SELECT * FROM nama_tabel WHERE nama_field = isi_record;
+
+Menampilkan record 2 kondisi
+    SELECT * FROM nama_tabel WHERE nama_field1 = isi_record AND nama_field2 = isi_record;
+
+Membuat Foreign Key pada tabel
+    ALTER TABLE nama_tabel1 ADD FOREIGN KEY (nama_atribut2) REFERENCES nama_tabel2 (nama_atribut2);
+
+    -- dengan constraint
+    ALTER TABLE nama_tabel1 ADD CONSTRAINT FOREIGN KEY (nama_atribut2) REFERENCES nama_tabel2 (nama_atribut2);
+
+
+-----------------------------------------------------------
+
+
+MENGHAPUS
+Menghapus atribut
+    ALTER TABLE nama_tabel DROP COLOUMN nama_atribut;
+
+Menghapus record
+    DELETE FROM nama_tabel WHERE nama_atribut = isi_record;
+
+Menghapus tabel
+    DROP nama_tabel;
+
+Menghapus database
+    DROP nama_database;
+
+
+

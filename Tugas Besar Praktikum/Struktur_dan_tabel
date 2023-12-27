@@ -1,0 +1,63 @@
+CREATE DATABASE pelanggan_wifi;
+CREATE DATABASE wifi_Kencang;
+
+CREATE TABLE Produk (`Nama_produk` VARCHAR (50), `Phone` VARCHAR (30), `Internet` VARCHAR (30), `ID_produk` VARCHAR (50) PRIMARY KEY);
+
+INSERT INTO Produk VALUES
+('Telkom Link ADSL', '05428542046', '161101031685', '9014010140903 (INDIHOME)');
+
+
+
+CREATE TABLE Tagihan (`ID_produk` VARCHAR (50),`ID_tagihan` VARCHAR (30) PRIMARY KEY, `Nama_pelanggan` VARCHAR (50), `Mata_uang` VARCHAR (10), `Jumlah_tagihan` VARCHAR (20), `Belum_bayar` VARCHAR (20), `Status_pembayaran` VARCHAR (10), `Cicilan` VARCHAR (20));
+
+INSERT INTO Tagihan VALUES
+('9014010140903 (INDIHOME)', '1001', 'Andi Pratama', 'IDR', 'Rp278.000', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '1002', 'Rini Anggraini', 'IDR', 'Rp285.000', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '1003', 'Bayu Wijaya', 'IDR', 'Rp243.421', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '7221', 'Hadi Santoso', 'IDR', 'Rp261.000', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '0497', 'Dina Safitri', 'IDR', 'Rp271.000', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '5500', 'Dewi Lestari', 'IDR', 'Rp100.000', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '1007', 'Maya Putri', 'IDR', 'Rp236.500', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '1008', 'Faisal Rahman', 'IDR', 'Rp293.552', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '9450', 'Sari Indah', 'IDR', 'Rp350.500', '0', 'Lunas', 'Bukan cicilan'),
+('9014010140903 (INDIHOME)', '8102', 'Agus Setiawan', 'IDR', 'Rp300.552', '0', 'Lunas', 'Bukan cicilan');
+
+('9014010140903 (INDIHOME)', '2206', 'Budi Santoso', 'IDR', 'Rp385.500', '0', 'Lunas', 'Bukan cicilan');
+('1004', 'IDR', '261.000', '0', 'Lunas', 'Bukan cicilan'),
+
+
+CREATE TABLE Pembayaran (`ID_pelanggan` VARCHAR (30) PRIMARY KEY, `ID_tagihan` VARCHAR (30), `Nama_pelanggan` VARCHAR (50), `Periode`  VARCHAR (20), `Mata_uang` VARCHAR (10), `Jumlah_tagihan` VARCHAR (20), `Lokasi_pembayaran` VARCHAR (100), `Tanggal` VARCHAR (30), `Jam` VARCHAR (15));
+
+
+INSERT INTO Pembayaran VALUES
+('2020001', '1001', 'Andi Pratama', 'Nov 2020', 'IDR', 'Rp278.000', 'Finnet Bank - Bank Negara Indonesia', '19-Nov-2020', '08:51:42'),
+('2020002', '1002', 'Rini Anggraini', 'Okt 2020', 'IDR', 'Rp285.000', 'Finnet Bank - Bank Mandiri', '19-Okt-2020', '07:50:50'),
+('2020003', '1003', 'Bayu Wijaya', 'Sep 2020', 'IDR', 'Rp243.421', 'Finnet Bank - Bank Mandiri', '17-Sep-2020', '12:42:57'),
+('2310076', '7221', 'Hadi Santoso', 'Juli 2020', 'IDR', 'Rp261.000', 'BPP BPP PLS Penajam', '18-Agu-2020', '10:30:27'),
+('3123400', '0497', 'Dina Safitri', 'Des 2020', 'IDR', 'Rp271.000', 'Finnet Bank - Bank Rakyat Indonesia', '20-Mar-2020', '00:49:43'),
+('2020006', '5500', 'Dewi Lestari', 'Mei 2020', 'IDR', 'Rp100.000', 'Finnet Bank - Bank Negara Indonesia', '17-Mei-2020', '16:55:55'),
+('2020007', '1007', 'Maya Putri', 'Mei 2020', 'IDR', 'Rp236.500', 'Finnet Bank - Bank Rakyat Indonesia', '17-Apr-2020', '10:22:50'),
+('2020008', '1008', 'Faisal Rahman', 'Mar 2020', 'IDR', 'Rp293.552', 'Finnet Bank - Bank Rakyat Indonesia', '16-Mar-2020', '14:49:43'),
+('2020009', '9450', 'Sari Indah', 'Jan 2020', 'IDR', 'Rp350.500', 'BPP BPP PLS Penajam', '1-Feb-2020', '10:30:27'),
+('2020010', '8102', 'Agus Setiawan', 'Mar 2020', 'IDR', 'Rp300.552', 'Finnet Bank - Bank Mandiri', '16-Mar-2020', '14:49:43');
+
+
+
+
+
+-- UNTUK JOIN
+
+CREATE TABLE Pembayaran (`ID_pelanggan` VARCHAR (30) PRIMARY KEY, `ID_tagihan` VARCHAR (30), `Nama_pelanggan` VARCHAR (50), `Periode`  VARCHAR (20), `Mata_uang` VARCHAR (10), `Jumlah_tagihan` VARCHAR (20), `Lokasi_pembayaran` VARCHAR (100), `Tanggal` VARCHAR (30), `Jam` VARCHAR (15));
+
+
+INSERT INTO Pembayaran VALUES
+('2020001', '1001', 'Andi Pratama', 'Nov 2020', 'IDR', 'Rp278.000', 'Finnet Bank - Bank Negara Indonesia', '19-Nov-2020', '08:51:42'),
+('2020002', '1002', 'Rini Anggraini', 'Okt 2020', 'IDR', 'Rp285.000', 'Finnet Bank - Bank Mandiri', '19-Okt-2020', '07:50:50'),
+('2020003', '1003', 'Bayu Wijaya', 'Sep 2020', 'IDR', 'Rp243.421', 'Finnet Bank - Bank Mandiri', '17-Sep-2020', '12:42:57'),
+('2310076', '7742', 'Ilham Nugraha', 'Juli 2020', 'IDR', 'Rp261.000', 'BPP BPP PLS Penajam', '18-Agu-2020', '10:30:27'),
+('3123400', '3870', 'Nia Damayanti', 'Des 2020', 'IDR', 'Rp190.000', 'Finnet Bank - Bank Rakyat Indonesia', '20-Mar-2020', '00:49:43'),
+('2020006', '2345', 'Adi Perdana', 'Mei 2020', 'IDR', 'Rp200.000', 'Finnet Bank - Bank Negara Indonesia', '17-Mei-2020', '16:55:55'),
+('2020007', '1007', 'Maya Putri', 'Mei 2020', 'IDR', 'Rp236.500', 'Finnet Bank - Bank Rakyat Indonesia', '17-Apr-2020', '10:22:50'),
+('2020008', '1008', 'Faisal Rahman', 'Mar 2020', 'IDR', 'Rp293.552', 'Finnet Bank - Bank Rakyat Indonesia', '16-Mar-2020', '14:49:43'),
+('2020009', '9450', 'Sari Indah', 'Jan 2020', 'IDR', 'Rp350.500', 'BPP BPP PLS Penajam', '1-Feb-2020', '10:30:27'),
+('2020010', '1130', 'Eka Surya', 'Mar 2020', 'IDR', 'Rp288.000', 'Finnet Bank - Bank Mandiri', '16-Mar-2020', '14:49:43');
