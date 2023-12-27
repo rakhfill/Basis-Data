@@ -1,6 +1,7 @@
 CREATE DATABASE pelanggan_wifi;
 CREATE DATABASE wifi_Kencang;
 
+
 CREATE TABLE Produk (`Nama_produk` VARCHAR (50), `Phone` VARCHAR (30), `Internet` VARCHAR (30), `ID_produk` VARCHAR (50) PRIMARY KEY);
 
 INSERT INTO Produk VALUES
