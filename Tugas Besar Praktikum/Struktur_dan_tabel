@@ -26,8 +26,8 @@ INSERT INTO Tagihan VALUES
 ('1004', 'IDR', '261.000', '0', 'Lunas', 'Bukan cicilan'),
 
 
-CREATE TABLE Pembayaran (`ID_pelanggan` VARCHAR (30) PRIMARY KEY, `ID_tagihan` VARCHAR (30), `Nama_pelanggan` VARCHAR (50), `Periode`  VARCHAR (20), `Mata_uang` VARCHAR (10), `Jumlah_tagihan` VARCHAR (20), `Lokasi_pembayaran` VARCHAR (100), `Tanggal` VARCHAR (30), `Jam` VARCHAR (15));
 
+CREATE TABLE Pembayaran (`ID_pelanggan` VARCHAR (30) PRIMARY KEY, `ID_tagihan` VARCHAR (30), `Nama_pelanggan` VARCHAR (50), `Periode`  VARCHAR (20), `Mata_uang` VARCHAR (10), `Jumlah_tagihan` VARCHAR (20), `Lokasi_pembayaran` VARCHAR (100), `Tanggal` VARCHAR (30), `Jam` VARCHAR (15));
 
 INSERT INTO Pembayaran VALUES
 ('2020001', '1001', 'Andi Pratama', 'Nov 2020', 'IDR', 'Rp278.000', 'Finnet Bank - Bank Negara Indonesia', '19-Nov-2020', '08:51:42'),
